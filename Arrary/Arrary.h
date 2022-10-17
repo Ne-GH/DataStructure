@@ -2,13 +2,13 @@
 #include <ostream>
 #include <stdlib.h>
 #include <string>
-#include "../Tools/couterrormsg.h"
+#include "../Tools/out_error_msg.h"
 using namespace std;
 
 
 
 template<typename T>
-class List{
+class Arrary{
 private:
 	T *_arr;
 	size_t _memory_size = 10;
@@ -29,16 +29,16 @@ private:
 public:
 
 
-	List(){
+	Arrary(){
 		_arr = new T[_memory_size];
 	}
-	~List(){
+	~Arrary(){
 		delete _arr;
 	}
 	
     void Insert(int pos,T val){
         if(pos <= 0 || pos > _data_len+1){
-            COUT_ERROR("pos" << pos << "is error");
+            COUT_ERROR("pos: " << pos << " is error");
             return;
         }
 
@@ -132,6 +132,9 @@ public:
 			cout << _arr[i] << " ";
 		}
 	}
+    void Print(){
+        Show();
+    }
 
 	size_t Size(){
 		return _data_len;

@@ -9,11 +9,11 @@
 // #define LIST_STACK
 
 #if LIST_STACK
-#include "./List.h"
+#include "./List/List.h"
 
-#else 
+#else
 
-#include "./Link_List.h"
+#include "../Tools/out_error_msg.h"
 #define List LinkList
 
 #endif

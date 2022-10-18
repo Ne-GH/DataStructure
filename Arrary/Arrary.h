@@ -72,7 +72,7 @@ public:
     void Delete(int pos){
     
         if(pos <= 0 || pos > _data_len){
-            COUT_ERROR("Delete " "pos " << pos << " is error");
+            OUT_ERROR("Delete " "pos " << pos << " is error");
             return;
         }
 

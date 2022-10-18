@@ -35,7 +35,7 @@ public:
         // pos == 1, end = head;
         // link_lin = 0;
         if(pos <= 0 ||pos > _link_len+1){
-            COUT_ERROR("pos" << pos << "is" << "error");
+            OUT_ERROR("pos" << pos << "is" << "error");
             return;
         }
 

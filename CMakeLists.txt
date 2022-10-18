@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 17)
 
 FILE(GLOB SC_FILES "*.cpp" "*.h")
 
-add_executable(${PROJECT_NAME} ${SC_FILES} demo.cpp)
+add_executable(${PROJECT_NAME} ${SC_FILES} demo.cpp Map/Map.h)

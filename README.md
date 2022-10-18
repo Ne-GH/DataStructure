@@ -6,3 +6,6 @@
 - [ ] Map  
 - [ ] Tree  
 - [ ] Picture
+- [ ] Algorithm
+  - [ ] Find
+  - [ ] Sort

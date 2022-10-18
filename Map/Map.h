@@ -8,8 +8,12 @@
 template<typename K,typename V>
 class Map{
 private:
-    K _key;
-    V _val;
+    class _Map{
+    private:
+        K _key;
+        V _val;
+    };
+
 public:
 
     Map(){

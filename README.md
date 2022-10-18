@@ -2,7 +2,7 @@
 - [x] Arrary  
 - [x] List  
 - [x] Stack  
-- [ ] Queue  
+- [x] Queue  
 - [ ] Map  
 - [ ] Tree  
-- [ ] Picture  
+- [ ] Picture

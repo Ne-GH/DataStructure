@@ -1,19 +1,31 @@
-/*
-*    Time: 04/10/22 09:18:36
-*    Create By yongheng
-*/
 
-#include <cstddef>
+#ifndef _LIST_H_
+#define _LIST_H_
+
 #include <iostream>
 #include "../Tools/out_error_msg.h"
 
 
-
 template<typename T>
-class LinkList{
+class List{
+private:
+
+    class _Node{
+    public:
+        _Node(){}
+        _Node(T data):data(data){}
+        T data;
+        _Node *_next;
+    };
+
+    size_t _link_len= 0;
+
+    _Node *_head;
+    _Node *_end;
+
 public:
 
-    LinkList(){
+    List(){
         _head = new _Node;
         // _head->data = _Node();
         _head->_next = NULL;
@@ -21,7 +33,7 @@ public:
         // _end = _head->_next;
     }
 
-    ~LinkList(){
+    ~List(){
         _Node* tmp;
         while(_head){
             tmp = _head;
@@ -67,7 +79,7 @@ public:
         _Node *p = new _Node(data);
         _end->_next = p;
         p->_next = nullptr;
-        _end = _end->_next;
+        _end = p;
 
         _link_len ++;
 
@@ -87,9 +99,17 @@ public:
 
     void Delete(size_t pos){
 
-        if(pos <= 0 || pos > _link_len){
-            COUT_ERROR("pos" << pos << "is error");
+        if(pos == 0){
+            _Node *tmp = _head;
+            _head = _head->_next;
+            delete tmp;
+            _link_len --;
             return;
+        }
+
+        if(pos < 0 || pos > _link_len){
+            OUT_ERROR("pos" << pos << "is error");
+            exit(0);
         }
 
         _Node *tmp = _head;
@@ -117,7 +137,7 @@ public:
     T *Find_val_by_pos(size_t pos){
 
         if(pos <= 0 || pos > _link_len){
-            COUT_ERROR("pos" << pos << "is error");
+            OUT_ERROR("pos" << pos << "is error");
             return nullptr;
         }
 
@@ -149,9 +169,17 @@ public:
     void Pop_back(){
         Delete(this->_link_len);
     }
+
     
     T Front(){
-        return *begin();
+        T *p = begin();
+        if(p != nullptr){
+            return *p;
+        }
+        else{
+            OUT_ERROR("This List is empty");
+        }
+        exit(0);
     }
     T End(){
         return *end();
@@ -159,9 +187,9 @@ public:
 
     T *begin(){
         if(_link_len != 0){
-            return &(_head->_next->data);
+            return &_head->data;
         }
-        return T();
+        return nullptr;
     }
     T *end(){
         if(_link_len != 0){
@@ -174,23 +202,6 @@ public:
         return _link_len;
     }
     
-    
-    
-private:
-
-
-    class _Node{
-        public:
-            _Node(){}
-            _Node(T data):data(data){}
-            T data;
-            _Node *_next;
-    };
-
-    size_t _link_len= 0;
-
-    _Node *_head;
-    _Node *_end;
-
-
 };
+
+#endif

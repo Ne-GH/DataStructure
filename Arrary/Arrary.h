@@ -1,11 +1,7 @@
-#include <iostream>
-#include <ostream>
-#include <stdlib.h>
-#include <string>
+#ifndef _ARRARY_H_
+#define _ARRARY_H_
+
 #include "../Tools/out_error_msg.h"
-using namespace std;
-
-
 
 template<typename T>
 class Arrary{
@@ -38,7 +34,7 @@ public:
 	
     void Insert(int pos,T val){
         if(pos <= 0 || pos > _data_len+1){
-            COUT_ERROR("pos: " << pos << " is error");
+            OUT_ERROR("pos: " << pos << " is error");
             return;
         }
 
@@ -62,13 +58,16 @@ public:
 		_arr[_data_len++] = num;
 	}
 	
-    void Pop_back(){
+    T Pop_back(){
         if(_data_len <= _memory_size/2){
             re_new(_memory_size*2.0/3);
         }
         _data_len--;
+        return _arr[_data_len];
     }
-
+    T Pop(){
+        return Pop_back();
+    }
     void Delete(int pos){
     
         if(pos <= 0 || pos > _data_len){
@@ -129,7 +128,7 @@ public:
 
 	void Show(){
 		for(int i = 0;i < _data_len; ++i){
-			cout << _arr[i] << " ";
+			std::cout << _arr[i] << " ";
 		}
 	}
     void Print(){
@@ -157,5 +156,5 @@ public:
     }
 };
 
-
+#endif
 

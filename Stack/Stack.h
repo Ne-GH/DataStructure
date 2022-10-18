@@ -3,43 +3,36 @@
 *    Create By yongheng
 */
 
-#include <cstddef>
+#ifndef _STACK_H_
+#define _STACK_H_
+
 #include <iostream>
 
-// #define LIST_STACK
-
-#if LIST_STACK
-#include "./List/List.h"
-
-#else
 
 #include "../Tools/out_error_msg.h"
-#define List LinkList
-
-#endif
+#include "../Arrary/Arrary.h"
 
 template<typename T>
 class Stack{
 private:
-    List<T> sta;
+    Arrary<T> _stack;
 
 public:
     
-    void Push(T data){
-        sta.Push_back(data);
+    void Push_back(T data){
+        _stack.Push_back(data);
     }
-    void Pop() {
-        sta.Pop_back();
+    T Pop_back() {
+        return _stack.Pop_back();
     }
     size_t Size(){
-        return sta.Size();
+        return _stack.Size();
     }
     T Top(){
-        return sta.End();
+        return _stack.End();
     }
 
 
 };
 
-#undef List
-#undef LIST_STACK
+#endif

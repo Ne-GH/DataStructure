@@ -133,7 +133,9 @@ public:
     void Pop_back(size_t pos){
         Delete(_link_len);
     }
-
+    void Pop_back(){
+        Delete(this->_link_len);
+    }
     T *Find_val_by_pos(size_t pos){
 
         if(pos <= 0 || pos > _link_len){
@@ -166,9 +168,7 @@ public:
         return 0;
     }
 
-    void Pop_back(){
-        Delete(this->_link_len);
-    }
+
 
     
     T Front(){

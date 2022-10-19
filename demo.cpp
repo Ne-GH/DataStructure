@@ -17,10 +17,14 @@ int main(int argc,char *argv[]){
 
     BinaryTree<int> bt(10);
     bt.Insert(5);
-    bt.Insert(11);
-    bt.Insert(10);
     bt.Insert(1);
+    bt.Insert(11);
+    bt.Insert(12);
+    bt.Insert(13);
+    bt.Insert(1);
+    bt.Insert(7);
     bt.Insert(9);
+    bt.Insert(12);
 
     bt.PreOrderTraversal();
     cout << endl;
@@ -28,7 +32,16 @@ int main(int argc,char *argv[]){
     cout << endl;
     bt.PostOrderTraversal();
     cout << endl;
-    bt.Output();
+    bt.Draw();
+    cout << endl;
+    cout << endl;
+    bt.Delete(12);
+    bt.Draw();
+
+
+
+
+
     bt.Destroy();
 
 

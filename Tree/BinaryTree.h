@@ -44,10 +44,10 @@ public:
 
 
     void Insert(T data){
-
         _Insert(_root,data);
-
-
+    }
+    void Delete(T data){
+        _Delete(_root,data);
     }
     void PreOrderTraversal(){
         _PreOrderTraversal(_root);
@@ -66,8 +66,8 @@ public:
         Destroy();
     }
 
-    void Output(){
-        output(_root);
+    void Draw(){
+        _output(_root);
     }
 
 
@@ -113,20 +113,11 @@ void _PostOrderTraversal(TreeNode<T> *root){
 template<typename T>
 void _Destroy(TreeNode<T> *root){
 
-    if(root != nullptr){
-        if(root->_left != nullptr){
-            _Destroy(root->_left);
-        }
-        if(root->_right != nullptr){
-            _Destroy(root->_right);
-        }
-
-        delete root;
-    }
-
-    else{
+    if(root == nullptr){
         return;
     }
+    _Destroy(root->_left);
+    _Destroy(root->_right);
     return;
 }
 template<typename T>
@@ -157,36 +148,66 @@ void _Insert(TreeNode<T> *root,T data){
     }
 
 }
+template<typename T>
+void _Delete(TreeNode<T>* root,T data){
+    if(root == nullptr)
+        return;
+    if(root->_left != nullptr && root->_left->_val == data){
+        if(root->_left->_left){
+            TreeNode<T> *p = root->_left->_left;
+            delete root->_left;
+            root->_left = p;
+        }
+        else if(root->_left->_right){
+            TreeNode<T> *p = root->_left->_right;
+            delete root->_left;
+            root->_left = p;
+        }
+        else{
+            delete root->_left;
+            root->_left = nullptr;
+        }
+
+    }
+    if(root->_right != nullptr && root->_right->_val == data){
+        if(root->_right->_left){
+            TreeNode<T> *p = root->_right->_left;
+            delete root->_right;
+            root->_right = p;
+        }
+        else if(root->_right->_right){
+            TreeNode<T> *p = root->_right->_right;
+            delete root->_right;
+            root->_right = p;
+        }
+    }
+    _Delete(root->_left,data);
+    _Delete(root->_right,data);
+
+}
 
 template<typename T>
-void output_impl(TreeNode<T> *n, bool left, std::string const& indent)
-{
-    if (n->_right)
-    {
-        output_impl(n->_right, false, indent + (left ? "|     " : "      "));
+void _output_impl(TreeNode<T> *root, bool left, std::string const& indent){
+    if (root->_right){
+        _output_impl(root->_right, false, indent + (left ? "|     " : "      "));
     }
     std::cout << indent;
     std::cout << (left ? '\\' : '/');
     std::cout << "-----";
-    std::cout << n->_val << std::endl;
-    if (n->_left)
-    {
-        output_impl(n->_left, true, indent + (left ? "      " : "|     "));
+    std::cout << root->_val << std::endl;
+    if (root->_left){
+        _output_impl(root->_left, true, indent + (left ? "      " : "|     "));
     }
 }
 template<typename T>
-void output(TreeNode<T>* root)
-{
-    if (root->_right)
-    {
-        output_impl(root->_right, false, "");
+void _output(TreeNode<T>* root) {
+    if (root->_right) {
+        _output_impl(root->_right, false, "");
     }
     std::cout << root->_val << std::endl;
-    if (root->_left)
-    {
-        output_impl(root->_left, true, "");
+    if (root->_left) {
+        _output_impl(root->_left, true, "");
     }
-
 }
 
 

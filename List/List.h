@@ -189,7 +189,7 @@ public:
         if(_link_len != 0){
             return &(_end->data);
         }
-        return T();
+        return nullptr;
     }
 
     size_t Size(){

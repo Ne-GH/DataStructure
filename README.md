@@ -3,8 +3,8 @@
 - [x] List  
 - [x] Stack  
 - [x] Queue  
+- [ ] Tree
 - [ ] Map  
-- [ ] Tree  
 - [ ] Picture
 - [ ] Algorithm
   - [ ] Find

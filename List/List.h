@@ -130,9 +130,6 @@ public:
 
     }
 
-    void Pop_back(size_t pos){
-        Delete(_link_len);
-    }
     void Pop_back(){
         Delete(this->_link_len);
     }
@@ -180,9 +177,6 @@ public:
             OUT_ERROR("This List is empty");
         }
         exit(0);
-    }
-    T End(){
-        return *end();
     }
 
     T *begin(){

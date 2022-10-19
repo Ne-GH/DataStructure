@@ -28,7 +28,11 @@ int main(int argc,char *argv[]){
     cout << endl;
     bt.PostOrderTraversal();
     cout << endl;
+    bt.Output();
     bt.Destroy();
+
+
+
 
     return 0;
 }

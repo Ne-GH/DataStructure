@@ -66,6 +66,9 @@ public:
         Destroy();
     }
 
+    void Output(){
+        output(_root);
+    }
 
 
     TreeNode<T> *Root(){
@@ -154,4 +157,38 @@ void _Insert(TreeNode<T> *root,T data){
     }
 
 }
+
+template<typename T>
+void output_impl(TreeNode<T> *n, bool left, std::string const& indent)
+{
+    if (n->_right)
+    {
+        output_impl(n->_right, false, indent + (left ? "|     " : "      "));
+    }
+    std::cout << indent;
+    std::cout << (left ? '\\' : '/');
+    std::cout << "-----";
+    std::cout << n->_val << std::endl;
+    if (n->_left)
+    {
+        output_impl(n->_left, true, indent + (left ? "      " : "|     "));
+    }
+}
+template<typename T>
+void output(TreeNode<T>* root)
+{
+    if (root->_right)
+    {
+        output_impl(root->_right, false, "");
+    }
+    std::cout << root->_val << std::endl;
+    if (root->_left)
+    {
+        output_impl(root->_left, true, "");
+    }
+
+}
+
+
+
 #endif //DATASTRUCTURE_BINARYTREE_H

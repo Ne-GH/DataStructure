@@ -7,6 +7,18 @@
 
 template<typename T>
 class BinaryTree{
+    class _Node{
+        T _val;
+        BinaryTree *_left;
+        BinaryTree *_right;
+    };
+public:
+    BinaryTree(){
+
+    }
+    ~BinaryTree(){
+
+    }
 
 };
 

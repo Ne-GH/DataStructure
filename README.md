@@ -4,6 +4,7 @@
 - [x] Stack  
 - [x] Queue  
 - [ ] Tree
+  - [x] BinaryTree
 - [ ] Map  
 - [ ] Picture
 - [ ] Algorithm

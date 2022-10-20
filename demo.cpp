@@ -15,36 +15,23 @@ using std::cin,std::cout,std::endl;
 
 int main(int argc,char *argv[]){
 
-    BinaryTree<int> bt(10);
-    bt.Insert(5);
-    bt.Insert(1);
-    bt.Insert(11);
+    BinaryTree<int> bt;
+    bt.Insert(10);
+    bt.Insert(15);
+    bt.Insert(6);
     bt.Insert(12);
-    bt.Insert(13);
-    bt.Insert(1);
-    bt.Insert(7);
-    bt.Insert(9);
-    bt.Insert(12);
+    bt.Insert(19);
 
-    bt.PreOrderTraversal();
-    cout << endl;
-    bt.LnOrderTraversal();
-    cout << endl;
-    bt.PostOrderTraversal();
-    cout << endl;
-    bt.Draw();
-    cout << endl;
-    cout << endl;
-    bt.Delete(12);
     bt.Draw();
 
+    cout << endl << endl;
+    auto p = bt.Search(12);
 
+    cout << *p << endl;
 
-
+    cout << bt.GetDeep() << endl;
 
     bt.Destroy();
-
-
 
 
     return 0;

@@ -12,9 +12,14 @@ public:
     T _val;
     TreeNode *_left;
     TreeNode *_right;
-    TreeNode(){  }
+    TreeNode(){
+        _left = nullptr;
+        _right = nullptr;
+    }
     TreeNode(T val){
         _val = val;
+        _left = nullptr;
+        _right = nullptr;
     }
     friend std::ostream & operator << (std::ostream &out,TreeNode node){
         out << node._val;
@@ -34,20 +39,29 @@ class BinaryTree{
     TreeNode<T> *_root;
 public:
     BinaryTree(){
-        _root = new TreeNode<T>();
-        _root->_left = _root->_right = nullptr;
+        _root = nullptr;
     }
     BinaryTree(T data){
-        new (this)BinaryTree();
-        _root->_val = data;
+        _root = new TreeNode<T>(data);
     }
 
 
     void Insert(T data){
-        _Insert(_root,data);
+        if(_root == nullptr){
+            _root = new TreeNode<T>(data);
+        }
+        else{
+            _Insert(_root,data);
+        }
     }
     void Delete(T data){
         _Delete(_root,data);
+    }
+    TreeNode<T>* Search(T data){
+        return _Search(_root,data);
+    }
+    int GetDeep(){
+        return _GetDeep(_root);
     }
     void PreOrderTraversal(){
         _PreOrderTraversal(_root);
@@ -81,6 +95,15 @@ public:
     }
 
 };
+inline int MAX(int a,int b){
+    return a > b ? a : b;
+}
+template<typename T>
+int _GetDeep(TreeNode<T> *root){
+    if(root == nullptr)
+        return 0;
+    return MAX(_GetDeep(root->_left), _GetDeep(root->_right)) + 1;
+}
 template<typename T>
 void _PreOrderTraversal(TreeNode<T> *root){
     if(root == nullptr)
@@ -147,6 +170,20 @@ void _Insert(TreeNode<T> *root,T data){
         }
     }
 
+}
+template<typename T>
+TreeNode<T>* _Search(TreeNode<T> *root,T data){
+    if(root == nullptr)
+        return nullptr;
+    if(root->_val == data){
+        return root;
+    }
+    else if(root->_val > data){
+        return _Search(root->_left,data);
+    }
+    else {
+        return _Search(root->_right,data);
+    }
 }
 template<typename T>
 void _Delete(TreeNode<T>* root,T data){

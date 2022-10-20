@@ -5,14 +5,19 @@
 #ifndef DATASTRUCTURE_MAP_H
 #define DATASTRUCTURE_MAP_H
 
+#include "../Tree/BinaryTree.h"
+
 template<typename K,typename V>
 class Map{
 private:
-    class _Map{
+    class _Pair{
     private:
         K _key;
         V _val;
     };
+
+    BinaryTree<_Pair> _map;
+
 
 public:
 

@@ -7,25 +7,69 @@
 
 #include "../Tree/BinaryTree.h"
 
-template<typename K,typename V>
+template<typename KEY,typename VAL>
+class Pair{
+public:
+    KEY _key;
+    VAL _val;
+
+    friend std::ostream & operator << (std::ostream &out,Pair pair){
+        std::cout << pair._key << ":" << pair._val;
+        return out;
+    }
+    Pair(){
+        _key = _val = 0;
+    }
+    Pair(KEY key,VAL val) : _key(key),_val(val){  }
+
+
+    bool operator < (Pair r){
+        if(this->_key < r._key){
+            return true;
+        }
+        return false;
+    }
+    bool operator > (Pair r){
+        return !(*this < r);
+    }
+    bool operator == (Pair r){
+        if(this->_key == r._key){
+            return true;
+        }
+        return false;
+    }
+    bool operator != (Pair r){
+        return !(*this == r);
+    }
+};
+
+/* K and V need operator < > == */
+template<typename KEY,typename VAL>
 class Map{
 private:
-    class _Pair{
-    private:
-        K _key;
-        V _val;
-    };
 
-    BinaryTree<_Pair> _map;
-
-
+    BinaryTree<Pair<KEY,VAL>> _map;
 public:
 
     Map(){
-
     }
     ~Map(){
+    }
 
+    void Insert(KEY key,VAL val){
+        auto pair = Pair<KEY,VAL>(key,val);
+        _map.Insert(pair);
+    }
+
+    VAL& operator [](KEY key){
+        auto pair = Pair<KEY,VAL>();
+        pair._key = key;
+        auto p = _map.Search(pair);
+        return p->_val._val;
+    }
+
+    void Draw(){
+        _map.Draw();
     }
 
 };

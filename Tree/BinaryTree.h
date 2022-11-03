@@ -69,7 +69,18 @@ public:
         BalanceBinaryTree();
     }
     void Delete(T data){
-        _Delete(_root,data);
+        if(_root->_val == data){
+            TreeNode<T> *tmproot = new TreeNode<T>;
+            tmproot->_left = _root;
+            _Delete(tmproot,data);
+            _root = tmproot->_left;
+            delete tmproot;
+            return;
+        }
+        else{
+            _Delete(_root,data);
+            return;
+        }
     }
     TreeNode<T>* Search(T data){
         return _Search(_root,data);

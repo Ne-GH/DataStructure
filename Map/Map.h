@@ -65,9 +65,21 @@ public:
         auto pair = Pair<KEY,VAL>();
         pair._key = key;
         auto p = _map.Search(pair);
-        return p->_val._val;
-    }
+        if(p == nullptr){
+            VAL val = VAL();
+            _map.Insert(Pair<KEY,VAL>(key,val));
+            p = _map.Search(pair);
+            return p->_val._val;
+        }
+        else{
+            return p->_val._val;
+        }
 
+    }
+    void Delete(KEY key){
+        Pair<KEY,VAL> pair(key,0);
+        _map.Delete(pair);
+    }
     void Draw(){
         _map.Draw();
     }

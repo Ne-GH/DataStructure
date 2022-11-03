@@ -16,15 +16,18 @@ using std::cin,std::cout,std::endl;
 
 int main(int argc,char *argv[]){
 
-    BinaryTree<int> bt;
 
-    bt.Insert(10);
-    bt.Insert(11);
-    bt.Insert(12);
-    bt.Insert(13);
-    bt.Insert(14);
-    bt.Draw();
+    Map<int,int>mp;
+    mp.Insert(10,20);
+    mp.Insert(20,30);
+    mp.Insert(40,50);
+    mp.Draw();
 
+    cout << endl << mp[60] << endl;
+    mp[20] = 650;
+    cout << mp[20] << endl;
+    mp.Delete(20);
+    cout << mp[20] << endl;
 
     return 0;
 }

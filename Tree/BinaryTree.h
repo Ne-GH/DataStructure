@@ -5,6 +5,7 @@
 #ifndef DATASTRUCTURE_BINARYTREE_H
 #define DATASTRUCTURE_BINARYTREE_H
 #include <iostream>
+#include <vector>
 
 template<typename T>
 class TreeNode{
@@ -32,6 +33,18 @@ public:
 };
 
 
+template<typename T>
+TreeNode<T> *Build(int left,int right,std::vector<T>& vec){
+    int mid = (left + right) >> 1;
+    TreeNode<T> *root = new TreeNode<T>(vec[mid]);
+    if(left <= mid - 1){
+        root->_left = Build(left,mid - 1,vec);
+    }
+    if(mid + 1 <= right){
+        root->_right = Build(mid + 1,right,vec);
+    }
+    return root;
+}
 
 template<typename T>
 class BinaryTree{
@@ -53,6 +66,7 @@ public:
         else{
             _Insert(_root,data);
         }
+        BalanceBinaryTree();
     }
     void Delete(T data){
         _Delete(_root,data);
@@ -94,7 +108,31 @@ public:
         return out;
     }
 
+    /* 使用额外的数组进行平衡 */
+    void BalanceBinaryTree(){
+        std::vector<T> vec;
+        GetInorder(vec,_root);
+
+        TreeNode<T> *root = Build(0,vec.size()-1,vec);
+        this->Destroy();
+        _root = new TreeNode<T>;
+        _root = root;
+        return;
+    }
+
 };
+
+template<typename T>
+void GetInorder(std::vector<T>&vec,TreeNode<T> *root){
+    if(root->_left != nullptr){
+        GetInorder(vec,root->_left);
+    }
+    vec.push_back(root->_val);
+    if(root->_right != nullptr){
+        GetInorder(vec,root->_right);
+    }
+}
+
 inline int MAX(int a,int b){
     return a > b ? a : b;
 }

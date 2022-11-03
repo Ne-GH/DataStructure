@@ -16,9 +16,14 @@ using std::cin,std::cout,std::endl;
 
 int main(int argc,char *argv[]){
 
-    Map<int,int> mp;
-    mp.Insert(10,20);
-    cout << mp[10] << endl;
+    BinaryTree<int> bt;
+
+    bt.Insert(10);
+    bt.Insert(11);
+    bt.Insert(12);
+    bt.Insert(13);
+    bt.Insert(14);
+    bt.Draw();
 
 
     return 0;

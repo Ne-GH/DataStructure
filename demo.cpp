@@ -16,7 +16,6 @@ using std::cin,std::cout,std::endl;
 
 int main(int argc,char *argv[]){
 
-
     Map<int,int>mp;
     mp.Insert(10,20);
     mp.Insert(20,30);

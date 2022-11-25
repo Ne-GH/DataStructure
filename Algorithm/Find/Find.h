@@ -9,9 +9,9 @@
 template <typename T>
 class Find{
     T QueueFind(const T&val);
-    std::vector<T> QueueFind_All(const T&val);
+    std::vector<T> QueueFind_All(const T &val);
 
-    T BinaryFind()
+    T BinaryFind(const T &val);
 };
 
 
